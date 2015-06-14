@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BattleSystem : MonoBehaviour {
 
@@ -13,9 +14,31 @@ public class BattleSystem : MonoBehaviour {
 
 	string moveName = "", introText = "Test Intro Text";
 
+	public string[][] moves = new string[][] {
+		// KatFer
+		new string[] {"Whip", "10"},
+		new string[] {"Slap on the Wrist", "20"},
+		new string[] {"Bang Bang", "30"},
+
+		// Hitler
+		new string[] {"Scapegoat", "10"},
+		new string[] {"Third Reich", "20"},
+		new string[] {"Triumph of the Will", "30"},
+
+		// Mussolini
+		new string[] {"Fascism", "10"},
+		new string[] {"Black Shirts", "20"},
+		new string[] {"Propoganda", "30"},
+
+		// Nosferatu
+		new string[] {"Darkness", "10"},
+		new string[] {"Blood Suck", "20"},
+		new string[] {"Expressionism", "30"}
+	};
 
 	// Use this for initialization
 	void Awake () {
+
 		MoveButtons.SetActive (false);
 
 		dialogueText = dialogueBox.GetComponentInChildren<Text>();
