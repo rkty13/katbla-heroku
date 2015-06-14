@@ -30,10 +30,9 @@ public class BattleSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		playerHealthText.text = playerHealthValue.ToString();
+		enemyHealthText.text = enemyHealthValue.ToString();
 		if (!somebodyWon) {
-			if (playerHealthValue<=0 || enemyHealthValue<=0) somebodyWon = true;
-			playerHealthText.text = playerHealthValue.ToString();
-			enemyHealthText.text = enemyHealthValue.ToString();
 			if(dialogueBox.activeSelf) {
 				if(continueDialogue) {
 					dialogueBox.SetActive (false);
@@ -48,7 +47,9 @@ public class BattleSystem : MonoBehaviour {
 				dialogueBox.SetActive (true);
 				enemyHealthValue-=10;
 			}
+			if (playerHealthValue<=0 || enemyHealthValue<=0) somebodyWon = true;
 		}
+		dialogueText.text = "Somebody Won";
 	}
 
 	public void setContinueDialogue(bool val) {
