@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ public class BattleSystem : MonoBehaviour {
 
 	int playerHealthValue = 100, enemyHealthValue = 100;
 
-	bool continueDialogue = false, moveSelected=false, somebodyWon = false;
+	bool continueDialogue = false, moveSelected = false, somebodyWon = false;
 	public GameObject dialogueBox, selfStats, enemyStats, MoveButtons;
 
 	Text dialogueText, playerHealthText, enemyHealthText;
@@ -16,24 +17,24 @@ public class BattleSystem : MonoBehaviour {
 
 	public string[][] moves = new string[][] {
 		// KatFer
-		new string[] {"Whip", "10"},
-		new string[] {"Slap on the Wrist", "20"},
-		new string[] {"Bang Bang", "30"},
+		new string[] {"Whip", "This is one of Ms. Fernandez's signature moves", "10"},
+		new string[] {"Wrist Slap", "This is also one of Ms. Fernandez's signature moves", "20"},
+		new string[] {"Bang Bang", "This is Ms. Fernandez's ultimate move", "30"},
 
 		// Hitler
-		new string[] {"Scapegoat", "10"},
-		new string[] {"Third Reich", "20"},
-		new string[] {"Triumph of the Will", "30"},
+		new string[] {"Scapegoat", "In order to secure his political platform, Adolf Hitler used the Jews as a scapegoat for Germany's problems during its economic depression.", "10"},
+		new string[] {"Third Reich", "", "20"},
+		new string[] {"Triumph of the Will", "", "30"},
 
 		// Mussolini
-		new string[] {"Fascism", "10"},
-		new string[] {"Black Shirts", "20"},
-		new string[] {"Propoganda", "30"},
+		new string[] {"Fascism", "", "10"},
+		new string[] {"Black Shirts", "", "20"},
+		new string[] {"Propoganda", "", "30"},
 
 		// Nosferatu
-		new string[] {"Darkness", "10"},
-		new string[] {"Blood Suck", "20"},
-		new string[] {"Expressionism", "30"}
+		new string[] {"Darkness", "", "10"},
+		new string[] {"Blood Suck", "I mean, he is a vampire...", "20"},
+		new string[] {"Expressionism", "", "30"}
 	};
 
 	// Use this for initialization
@@ -56,23 +57,44 @@ public class BattleSystem : MonoBehaviour {
 		playerHealthText.text = playerHealthValue.ToString();
 		enemyHealthText.text = enemyHealthValue.ToString();
 		if (!somebodyWon) {
-			if(dialogueBox.activeSelf) {
-				if(continueDialogue) {
+			if (dialogueBox.activeSelf) {
+				if (continueDialogue) {
 					dialogueBox.SetActive (false);
 					continueDialogue = false;
 					MoveButtons.SetActive (true);
 				}
 			}
-			if(moveSelected) {
-				dialogueText.text = moveName;
+			if (moveSelected) {
+				int move = getMoveIndex (moveName);
+				int damage = 10;
+				string desc = "";
+				if (move >= 0) {
+					Int32.TryParse(moves[move][2], out damage);
+					desc = moves[move][1];
+				}
+				dialogueText.text = moveName + ": " + desc;
 				moveSelected = false;
 				MoveButtons.SetActive (false);
 				dialogueBox.SetActive (true);
-				enemyHealthValue-=10;
+				enemyHealthValue -= damage;
 			}
-			if (playerHealthValue<=0 || enemyHealthValue<=0) somebodyWon = true;
+			if (playerHealthValue <= 0 || enemyHealthValue <= 0) {
+				somebodyWon = true;
+			}
+		} else {
+			dialogueText.text = "Somebody Won";
 		}
-		dialogueText.text = "Somebody Won";
+	}
+
+	private int getMoveIndex(string name) {
+		for (int i = 0; i < moves.Length; i++) {
+			if (moves[i][0].Equals (name)) return i;
+		}
+		return -1;
+	}
+
+	private int getRandomMoveIndex(int start, int end) {
+		return -1;
 	}
 
 	public void setContinueDialogue(bool val) {
