@@ -13,7 +13,7 @@ public class BattleSystem : MonoBehaviour {
 
 	Text dialogueText, playerHealthText, enemyHealthText;
 
-	string moveName = "", introText = "Test Intro Text";
+	string moveName = "", introText = "A challenger has appeared!";
 
 	public string[][] moves = new string[][] {
 		// KatFer
