@@ -8,7 +8,7 @@ public class BattleSystem : MonoBehaviour {
 
 	int playerHealthValue = 100, enemyHealthValue = 100;
 
-	bool continueDialogue = false, moveSelected = false, somebodyWon = false;
+	bool continueDialogue = false, moveSelected = false, playerMove = true, enemyMove = false, somebodyWon = false;
 	public GameObject dialogueBox, selfStats, enemyStats, MoveButtons;
 
 	Text dialogueText, playerHealthText, enemyHealthText;
@@ -64,22 +64,42 @@ public class BattleSystem : MonoBehaviour {
 					MoveButtons.SetActive (true);
 				}
 			}
-			if (moveSelected) {
-				int move = getMoveIndex (moveName);
-				int damage = 10;
-				string desc = "";
-				if (move >= 0) {
-					Int32.TryParse(moves[move][2], out damage);
-					desc = moves[move][1];
+			else {
+				if (moveSelected && playerMove) {
+					MoveButtons.SetActive (false);
+					int move = getMoveIndex (moveName);
+					int damage = 10;
+					string desc = "";
+					if (move >= 0) {
+						Int32.TryParse(moves[move][2], out damage);
+						desc = moves[move][1];
+					}
+					dialogueText.text = moveName + ": " + desc;
+					moveSelected = false;
+					enemyMove = true;
+					playerMove = false;
+					MoveButtons.SetActive (false);
+					dialogueBox.SetActive (true);
+					enemyHealthValue -= damage;
+				} else if (enemyMove) {
+					int move = getRandomMoveIndex (3, 5);
+					int damage = 10;
+					string desc = "";
+					if (move >= 0) {
+						Int32.TryParse (moves[move][2], out damage);
+						desc = moves[move][1];
+					}
+					moveName = moves[move][0];
+					dialogueText.text = "Enemy used " + moveName + ": " + desc;
+					playerMove = true;
+					enemyMove = false;
+					MoveButtons.SetActive (false);
+					dialogueBox.SetActive (true);
+					playerHealthValue -= damage;
 				}
-				dialogueText.text = moveName + ": " + desc;
-				moveSelected = false;
-				MoveButtons.SetActive (false);
-				dialogueBox.SetActive (true);
-				enemyHealthValue -= damage;
-			}
-			if (playerHealthValue <= 0 || enemyHealthValue <= 0) {
-				somebodyWon = true;
+				if (playerHealthValue <= 0 || enemyHealthValue <= 0) {
+					somebodyWon = true;
+				}
 			}
 		} else {
 			dialogueText.text = "Somebody Won";
@@ -94,7 +114,8 @@ public class BattleSystem : MonoBehaviour {
 	}
 
 	private int getRandomMoveIndex(int start, int end) {
-		return -1;
+		System.Random r = new System.Random ();
+		return r.Next (start, end);
 	}
 
 	public void setContinueDialogue(bool val) {
