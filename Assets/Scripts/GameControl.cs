@@ -15,8 +15,6 @@ public class GameControl : MonoBehaviour {
 	}
 
 	public void change(string which) {
-		Debug.Log ("DF:SKFJS:KDLFJS");
 		Application.LoadLevel (which);
-		Debug.Log ("DF:SKFJS:KDLFJS");
 	}
 }
