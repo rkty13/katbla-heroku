@@ -15,6 +15,9 @@ public class BattleSystem : MonoBehaviour {
 
 	string moveName = "", introText = "A challenger has appeared!";
 
+	public AudioSource audio;
+	public AudioClip xClip;
+
 	public string[][] moves = new string[][] {
 		// KatFer
 		new string[] {"Whip", "This is one of Ms. Fernandez's signature moves", "10"},
@@ -76,6 +79,11 @@ public class BattleSystem : MonoBehaviour {
 				if (moveSelected && playerMove) {
 					MoveButtons.SetActive (false);
 					int move = getMoveIndex (moveName);
+
+					//audio = gameObject.AddComponent<AudioSource>();
+
+					audio.PlayOneShot(xClip);
+
 					int damage = 10;
 					string desc = "";
 					if (move >= 0) {
