@@ -602,7 +602,7 @@ GameObject:
   - 114: {fileID: 747500417}
   - 114: {fileID: 747500416}
   m_Layer: 5
-  m_Name: HitSel
+  m_Name: MusSel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -791,7 +791,7 @@ GameObject:
   - 114: {fileID: 835693808}
   - 114: {fileID: 835693807}
   m_Layer: 5
-  m_Name: MusSel
+  m_Name: NosSel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1155,9 +1155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Mussolini
-
-'
+  m_Text: Nosferatu
 --- !u!222 &1309995941
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1372,7 +1370,7 @@ GameObject:
   - 114: {fileID: 1675569553}
   - 114: {fileID: 1675569552}
   m_Layer: 5
-  m_Name: OttoSel
+  m_Name: HitSel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1535,7 +1533,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Otto Van Bimarck
+  m_Text: 'Hitler
+
+'
 --- !u!222 &2070468631
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1601,7 +1601,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hitler
+  m_Text: 'Mussolini
 
 '
 --- !u!222 &2075910223
