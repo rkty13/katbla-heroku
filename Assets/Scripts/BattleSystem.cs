@@ -23,18 +23,18 @@ public class BattleSystem : MonoBehaviour {
 
 		// Hitler
 		new string[] {"Scapegoat", "In order to secure his political platform, Adolf Hitler used the Jews as a scapegoat for Germany's problems during its economic depression.", "10"},
-		new string[] {"Third Reich", "tr", "20"},
-		new string[] {"Triumph of the Will", "totw", "30"},
+		new string[] {"Third Reich", "The Rise of Nazi Germany. Hitler's Pride joy.", "20"},
+		new string[] {"Triumph of the Will", "The Ultimate Trump Card. This is a propaganda Film chronicling the Nazi Party and its rise to power.", "30"},
 
 		// Mussolini
-		new string[] {"Fascism", "fasc", "10"},
-		new string[] {"Black Shirts", "bs", "20"},
-		new string[] {"Propoganda", "p", "30"},
+		new string[] {"Fascism", "Through strong feelings of Nationalism, Mussolini is able to take over Italy and lash out at other countries.", "10"},
+		new string[] {"Black Shirts", "Mussolini has sent out his personal Goons to deal with you. They hurt alot.", "20"},
+		new string[] {"Propoganda", "Using Propaganda increased Mussolini's popularity and transformed him into the embodiment of Italy itself. This is his ultimate move.", "30"},
 
 		// Nosferatu
-		new string[] {"Darkness", "d", "10"},
+		new string[] {"Darkness", "Vampires thrive in the night... And you have been caught!", "10"},
 		new string[] {"Blood Suck", "I mean, he is a vampire...", "20"},
-		new string[] {"Expressionism", "e", "30"}
+		new string[] {"Expressionism", "Kek", "30"}
 	};
 
 	int [][] moveSection = new int[][] { 
