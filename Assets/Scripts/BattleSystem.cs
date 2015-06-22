@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class BattleSystem : MonoBehaviour {
 
-	int playerHealthValue = 100, enemyHealthValue = 100;
+	int playerHealthValue = 100, enemyHealthValue = 100, LEVEL;
 
 	bool continueDialogue = false, moveSelected = false, playerMove = true, enemyMove = false, somebodyWon = false;
 	public GameObject dialogueBox, selfStats, enemyStats, MoveButtons;
@@ -14,6 +14,8 @@ public class BattleSystem : MonoBehaviour {
 	Text dialogueText, playerHealthText, enemyHealthText;
 
 	string moveName = "", introText = "A challenger has appeared!";
+
+	public AudioSource move1, move2, move3;
 
 	public string[][] moves = new string[][] {
 		// KatFer
@@ -48,14 +50,19 @@ public class BattleSystem : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
+		LEVEL = Application.loadedLevel - 1;
+
 		MoveButtons.SetActive (false);
 
 		dialogueText = dialogueBox.GetComponentInChildren<Text>();
 		playerHealthText = selfStats.GetComponentInChildren<Text>();
 		enemyHealthText = enemyStats.GetComponentInChildren<Text>();
 
+		move1 = MoveButtons.GetComponentInChildren<Button>().GetComponentInChildren<AudioSource>();
+		move1.Play ();
+
 		playerHealthText.text = "Fernandez's Health:\n" + playerHealthValue.ToString();
-		enemyHealthText.text = enemyNames[Application.loadedLevel-1] + "'s Health:\n" + enemyHealthValue.ToString();
+		enemyHealthText.text = enemyNames[LEVEL] + "'s Health:\n" + enemyHealthValue.ToString();
 
 		dialogueText.text = introText;
 	}
@@ -63,7 +70,7 @@ public class BattleSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		playerHealthText.text = "Fernandez's Health:\n" + playerHealthValue.ToString();
-		enemyHealthText.text = enemyNames[Application.loadedLevel-1] + "'s Health:\n" + enemyHealthValue.ToString();
+		enemyHealthText.text = enemyNames[LEVEL] + "'s Health:\n" + enemyHealthValue.ToString();
 		if (!somebodyWon) {
 			if (dialogueBox.activeSelf) {
 				if (continueDialogue) {
@@ -90,7 +97,7 @@ public class BattleSystem : MonoBehaviour {
 					dialogueBox.SetActive (true);
 					enemyHealthValue -= damage;
 				} else if (enemyMove) {
-					int move = getRandomMoveIndex (moveSection[Application.loadedLevel-1][0], moveSection[Application.loadedLevel-1][1]);
+					int move = getRandomMoveIndex (moveSection[LEVEL][0], moveSection[LEVEL][1]);
 					int damage = 10;
 					string desc = "";
 					if (move >= 0) {
