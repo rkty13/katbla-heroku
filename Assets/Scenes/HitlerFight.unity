@@ -487,7 +487,6 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
-  m_RepeatDelay: .5
   m_AllowActivationOnMobileDevice: 0
 --- !u!114 &1277929413
 MonoBehaviour:
@@ -569,7 +568,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8fd6a8f8e64aecb4a8b06e8085ae2d80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!224 &1682144421 stripped
+--- !u!224 &1682144421
 RectTransform:
   m_PrefabParentObject: {fileID: 22483970, guid: 77fa865fd1e7f9344a862fa12931b543,
     type: 2}
@@ -791,7 +790,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
-  m_StereoMirrorMode: 0
 --- !u!4 &1937051521
 Transform:
   m_ObjectHideFlags: 0
