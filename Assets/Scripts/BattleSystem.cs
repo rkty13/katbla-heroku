@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.Audio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,10 @@ public class BattleSystem : MonoBehaviour {
 
 	int playerHealthValue = 100, enemyHealthValue = 100, LEVEL;
 
+	public AudioSource dignity, fire, honesty, ohio;
+
 	bool continueDialogue = false, moveSelected = false, playerMove = true, enemyMove = false, somebodyWon = false;
+
 	public GameObject dialogueBox, selfStats, enemyStats, MoveButtons;
 
 	Text dialogueText, playerHealthText, enemyHealthText;
@@ -48,6 +52,8 @@ public class BattleSystem : MonoBehaviour {
 
 	string [] enemyNames = new string[] {"Hitler", "Mussolini", "Nosferatu"};
 
+	AudioSource[] winningSounds, losingSounds;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -63,6 +69,9 @@ public class BattleSystem : MonoBehaviour {
 		enemyHealthText.text = enemyNames[LEVEL] + "'s Health:\n" + enemyHealthValue.ToString();
 
 		dialogueText.text = introText;
+
+		winningSounds = new AudioSource[] { fire, ohio };
+		losingSounds = new AudioSource[] { dignity, honesty };
 	}
 	
 	// Update is called once per frame
@@ -120,7 +129,14 @@ public class BattleSystem : MonoBehaviour {
 				}
 			}
 		} else {
-			dialogueText.text = "Somebody Won";
+			dialogueText.text = (playerHealthValue<=0?enemyNames[Application.loadedLevel-1]:"Ms. Fernandez") + " Won!";
+			if (playerHealthValue<=0){
+				losingSounds[UnityEngine.Random.Range(0, 1)].Play();
+			} else {
+				AudioSource audio = new AudioSource();
+				winningSounds[UnityEngine.Random.Range(0, 1)].Play();
+			}
+			if (continueDialogue) Application.LoadLevel(0);
 		}
 	}
 
