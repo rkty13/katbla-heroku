@@ -171,6 +171,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11479802, guid: 77fa865fd1e7f9344a862fa12931b543, type: 2}
+      propertyPath: dignity
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f76f066382550c48bf2ed14be1366d6, type: 3}
+    - target: {fileID: 11479802, guid: 77fa865fd1e7f9344a862fa12931b543, type: 2}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a613935a80367f4290a03330a480748, type: 3}
+    - target: {fileID: 11479802, guid: 77fa865fd1e7f9344a862fa12931b543, type: 2}
+      propertyPath: honesty
+      value: 
+      objectReference: {fileID: 8300000, guid: 6afae43d29063d744ae5f3eb274278f4, type: 3}
+    - target: {fileID: 11479802, guid: 77fa865fd1e7f9344a862fa12931b543, type: 2}
+      propertyPath: ohio
+      value: 
+      objectReference: {fileID: 8300000, guid: a30b050e84034e7439d703036e247db2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77fa865fd1e7f9344a862fa12931b543, type: 2}
   m_IsPrefabParent: 0
