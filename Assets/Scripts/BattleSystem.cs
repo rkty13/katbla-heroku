@@ -15,7 +15,8 @@ public class BattleSystem : MonoBehaviour {
 
 	string moveName = "", introText = "A challenger has appeared!";
 
-	public AudioSource move1, move2, move3;
+	public AudioSource audio;
+	public AudioClip xClip;
 
 	public string[][] moves = new string[][] {
 		// KatFer
@@ -58,9 +59,6 @@ public class BattleSystem : MonoBehaviour {
 		playerHealthText = selfStats.GetComponentInChildren<Text>();
 		enemyHealthText = enemyStats.GetComponentInChildren<Text>();
 
-		move1 = MoveButtons.GetComponentInChildren<Button>().GetComponentInChildren<AudioSource>();
-		move1.Play ();
-
 		playerHealthText.text = "Fernandez's Health:\n" + playerHealthValue.ToString();
 		enemyHealthText.text = enemyNames[LEVEL] + "'s Health:\n" + enemyHealthValue.ToString();
 
@@ -83,6 +81,11 @@ public class BattleSystem : MonoBehaviour {
 				if (moveSelected && playerMove) {
 					MoveButtons.SetActive (false);
 					int move = getMoveIndex (moveName);
+
+					//audio = gameObject.AddComponent<AudioSource>();
+
+					audio.PlayOneShot(xClip);
+
 					int damage = 10;
 					string desc = "";
 					if (move >= 0) {
